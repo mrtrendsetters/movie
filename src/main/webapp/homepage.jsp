@@ -5,6 +5,6 @@
 <title>webapp</title>
 </head>
 <body>
-webapp
+webapp, <%= request.getAttribute("username") %>
 </body>
 </html>
