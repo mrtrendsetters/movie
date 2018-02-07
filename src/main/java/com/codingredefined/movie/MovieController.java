@@ -10,8 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class MovieController {
 
 	@RequestMapping("/")
-	public ModelAndView hello(HttpServletRequest request) {
-		if(request.getSession().getAttribute("name") == null) {
+	public ModelAndView defaultMapper(HttpServletRequest request) {
+		if(request.getSession().getAttribute("user_id") == null) {
 			return new ModelAndView("forward:/login");
 		} else { 
 			return new ModelAndView("forward:/dashboard");
