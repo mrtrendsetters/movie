@@ -11,9 +11,12 @@ public class DashboardController {
 		
 	@RequestMapping("/dashboard")
 	public ModelAndView hello(HttpServletRequest request) {
-		request.setAttribute("username", "username");
-		System.out.println("request received - user dashboard");
-		return new ModelAndView("forward:/homepage.jsp");
+		if(request.getSession().getAttribute("user_id") != null) {
+			return new ModelAndView("homepage");
+		} else { 
+			return new ModelAndView("forward:/login");
+		}
+		
 	}
 	
 }
