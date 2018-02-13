@@ -1,4 +1,4 @@
-package com.codingredefined.movie.database.dto;
+package com.codingredefined.movie.business.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

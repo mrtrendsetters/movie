@@ -6,9 +6,9 @@
 </head>
 <body>
 <form action="validateCredentials" method="POST">
-<p>Username:<input type="text" name="username" /></p>
-<p>Password:<input type="password" name="password" /></p>
-<p><input type="submit" /></p>
+<p>Username:<input type="text" name="username" value="admin" /></p>
+<p>Password:<input type="password" name="password" value="admin" /></p>
+<p><input type="submit" autofocus /></p>
 </form>
 </body>
 </html>

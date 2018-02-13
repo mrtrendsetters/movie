@@ -1,4 +1,4 @@
-package com.codingredefined.movie.dashboard;
+package com.codingredefined.movie.dashboard.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +12,7 @@ public class DashboardController {
 	@RequestMapping("/dashboard")
 	public ModelAndView hello(HttpServletRequest request) {
 		if(request.getSession().getAttribute("user_id") != null) {
-			return new ModelAndView("homepage");
+			return new ModelAndView("dashboard/homepage");
 		} else { 
 			return new ModelAndView("forward:/login");
 		}

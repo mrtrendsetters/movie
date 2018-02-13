@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.codingredefined.movie.business.model.User;
 import com.codingredefined.movie.database.UserRepository;
-import com.codingredefined.movie.database.dto.User;
 
 @RestController
 public class LoginController {
