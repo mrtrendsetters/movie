@@ -7,7 +7,9 @@
 </head>
 <body>
 Welcome, <%= request.getSession().getAttribute("user_name") %>! <br />
-<a href="genre/add">Add Genre</a>
-<a href="genre/viewAll">View Genre List</a>
+<a href="genre/add">Add Genre</a><br />
+<a href="genre/viewAll">View Genre List</a><br />
+<a href="movie/viewAll">View Movie List</a><br />
+<a href="movie/add">Add Movie</a><br />
 </body>
 </html>

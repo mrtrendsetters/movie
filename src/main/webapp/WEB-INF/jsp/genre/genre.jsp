@@ -13,7 +13,7 @@ Genre List <br />
 <%
 	for(Genre genre : genreList) {
 		%>
-		<%=genre.getGenre() %> <a href="delete/<%=genre.getGenreId() %>">Delete</a>
+		<%=genre.getGenre() %> <a href="delete/<%=genre.getGenreId() %>"  onclick="return confirm('Do you want to delete?')" >Delete</a>
 		<%
 	}
 %>
