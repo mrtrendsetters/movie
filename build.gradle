@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+war {
+	baseName = 'movie'
+	version = '0.0.1'
+}
+
+repositories {
+	mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	compile "org.springframework.boot:spring-boot-starter-web:1.2.7.RELEASE"
+	compile "javax.servlet:jstl:1.2"
+	providedRuntime("org.apache.tomcat.embed:tomcat-embed-jasper")
+	
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile 'mysql:mysql-connector-java'
+	
+	compile group: 'org.json', name: 'json', version: '20090211'
+	
+	
+	testCompile("junit:junit")
+}
