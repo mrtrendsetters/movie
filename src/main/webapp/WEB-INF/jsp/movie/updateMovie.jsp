@@ -13,12 +13,19 @@
 </head>
 <body>
 <% 
+
 	Movie movie = (Movie)request.getAttribute("movie"); 
 	ArrayList<Genre> genreList = (ArrayList<Genre>)request.getAttribute("genreList");	
 
 	String genre1 = movie.getGenre1();
-	String genre2 = movie.getGenre2();
-	String genre3 = movie.getGenre3();
+	String genre2 = null;
+	String genre3 = null;
+	if(movie.getGenre2() != null) {
+		genre2 = movie.getGenre2();
+	}
+	if(movie.getGenre3() != null) {
+		genre3 = movie.getGenre3();
+	}
 	
 	String status = null;
 	if(movie.getWatched() != null) {
@@ -35,9 +42,10 @@
 	
 <form action="../updateToDB" method="post">
 <input type="hidden" name="movieId" value="<%=movie.getMovieId() %>" />
-<p>Movie Name: <input type="text" name="movieName" id="movieName" value="<%= movie.getMovieName() %>" onkeyup="checkDuplicate(this.value, 'update')" /><span id="dupMovie"></span></p>
-<p>Genre: <select name="genre1">
-			<option value="null">Select Genre</option>
+<p>Movie Name: <input type="text" name="movieName" id="movieName" value="<%= movie.getMovieName() %>" onkeyup="checkDuplicate(this.value, 'update', '<%=movie.getMovieName() %>')" required autofocus /><span id="dupMovie"></span></p>
+
+<p>Genre: <select name="genre1" required>
+			<option value="">Select Genre</option>
 			<% for(Genre genre : genreList) { %>
 				<option value="<%= genre.getGenre() %>" <% if(genre1.equalsIgnoreCase(genre.getGenre())){out.print("selected");} %> ><%= genre.getGenre() %></option>
 			<% } %>
@@ -55,8 +63,10 @@
 			<% } %>
 		  </select>
 </p>
-<p>Release Year: <input type="text" name="releaseYear" value="<%=movie.getReleaseYear() %>" /></p>
-<p>Rating: <input type="text" name="rating" value="<%=movie.getRating() %>" /></p>
+<p>Release Year: <input type="text" name="releaseYear" value="<%=movie.getReleaseYear() %>" required /></p>
+
+<p>Rating: <input type="text" name="rating" value="<%=movie.getRating() %>" required /></p>
+
 <p>Status: <select name="status">
 			  <option value="null">Select Status</option>
 			  <option value="toBeDownloaded" <% if(status != null && status.equalsIgnoreCase("toBeDownloaded")){out.print("selected");} %> >To-Be Downloaded</option>
@@ -65,7 +75,9 @@
 		   </select> 
 </p>
 <p>PG: <input type="radio" name="pg" value="1" <% if(movie.getPg() == 1){out.print("checked");} %> />Yes  <input type="radio" name="pg" value="0" <% if(movie.getPg() == 0){out.print("checked");} %> />No </p>
+
 <p><input type="submit" id="submit" /></p>
 </form>
+
 </body>
 </html>

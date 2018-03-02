@@ -13,9 +13,9 @@
 <body>
 <% ArrayList<Genre> genreList = (ArrayList<Genre>)request.getAttribute("genreList"); %>
 <form action="addToDB" method="post">
-<p>Movie Name: <input type="text" name="movieName" id="movieName" onkeyup="checkDuplicate(this.value, 'add')" /><span id="dupMovie"></span></p>
-<p>Genre: <select name="genre1">
-			<option value="null">Select Genre</option>
+<p>Movie Name: <input type="text" name="movieName" id="movieName" onkeyup="checkDuplicate(this.value, 'add', '')" required autofocus /><span id="dupMovie"></span></p>
+<p>Genre: <select name="genre1" required>
+			<option value="">Select Genre</option>
 			<% for(Genre genre : genreList) { %>
 				<option value="<%= genre.getGenre() %>"><%= genre.getGenre() %></option>
 			<% } %>
@@ -33,8 +33,8 @@
 			<% } %>
 		  </select>
 </p>
-<p>Release Year: <input type="text" name="releaseYear" /></p>
-<p>Rating: <input type="text" name="rating" /></p>
+<p>Release Year: <input type="text" name="releaseYear" required /></p>
+<p>Rating: <input type="text" name="rating" required /></p>
 <p>Status: <select name="status">
 			  <option value="null">Select Status</option>
 			  <option value="toBeDownloaded">To-Be Downloaded</option>
