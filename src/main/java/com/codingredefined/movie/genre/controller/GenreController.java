@@ -21,12 +21,14 @@ public class GenreController {
 	GenreRepository repository;
 	
 	@RequestMapping("/add")
-	public ModelAndView addGenre() {
+	public ModelAndView addGenre(HttpServletRequest request) {
+		checkSession(request);
 		return new ModelAndView("genre/addGenre");
 	}
 
 	@RequestMapping("/addToDB")
-	public ModelAndView addGenreToDB(@RequestParam("genre") String genreName) {
+	public ModelAndView addGenreToDB(@RequestParam("genre") String genreName, HttpServletRequest request) {
+		checkSession(request);
 		Genre genre = new Genre(genreName);
 		repository.save(genre);
 		return new ModelAndView("redirect:/dashboard");
@@ -34,6 +36,7 @@ public class GenreController {
 	
 	@RequestMapping("/viewAll")
 	public ModelAndView viewAllGenre(HttpServletRequest request) {
+		checkSession(request);
 		List<Genre> genreList = repository.findAll();
 		request.setAttribute("genreList", genreList);
 		return new ModelAndView("genre/genre");
@@ -41,10 +44,18 @@ public class GenreController {
 
 	@RequestMapping("/delete/{genreId}")
 	public ModelAndView deleteGenre(@PathVariable("genreId") String genreId, HttpServletRequest request) {
+		checkSession(request);
 		repository.deleteByGenreId(Integer.parseInt(genreId));
 		List<Genre> genreList = repository.findAll();
 		request.setAttribute("genreList", genreList);
 		return new ModelAndView("redirect:/genre/viewAll");
+	}
+	
+	public void checkSession(HttpServletRequest request) {
+		System.out.println("User ID: " + request.getSession().getAttribute("user_id") + " Accessing GenreController");
+		if(request.getSession().getAttribute("user_id") == "null") {
+			new ModelAndView("forward:/login");
+		}
 	}
 	
 }
